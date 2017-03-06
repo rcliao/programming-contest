@@ -7,10 +7,11 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	contest "github.com/rcliao/programming-contest"
 )
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello world!")
+	fmt.Fprintf(w, "Hello contest!")
 }
 
 func helloRouterHandler(w http.ResponseWriter, r *http.Request) {
@@ -21,21 +22,19 @@ func helloRouterHandler(w http.ResponseWriter, r *http.Request) {
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	// parse templates
-	indexTmpl := template.Must(template.ParseFiles("templates/index.html"))
-	indexTmpl.Execute(w)
+	indexTmpl := template.Must(template.ParseFiles("../../templates/index.html"))
+	indexTmpl.Execute(w, struct{ Contest []contest.Contest }{})
 }
 
 func main() {
 	// TODO: parse Environment variable for configuration
 	var addr = ":8080"
 
-	var user = User{}
-
 	// set up router
 	r := mux.NewRouter()
 	r.HandleFunc("/", indexHandler).Methods("GET")
-	r.HandleFunc("/hello", helloHandler).Methods("GET")
-	r.HandleFunc("/hello/{name}", helloRouterHandler).Methods("GET")
+	r.HandleFunc("/api/hello", helloHandler).Methods("GET")
+	r.HandleFunc("/api/hello/{name}", helloRouterHandler).Methods("GET")
 
 	// start up web application
 	log.Printf("Starting programming-contest at port %v\n", addr)
