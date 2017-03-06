@@ -1,5 +1,7 @@
 package contest
 
+import "time"
+
 // ResultType represents enum of the submission result
 type ResultType uint8
 
@@ -62,7 +64,7 @@ type Contest struct {
 	ID          uint32     `json:"id"`
 	Name        string     `json:"name"`
 	Description string     `json:"description"`
-	HostedDate  Date       `json:"hostedDate"`
+	HostedDate  time.Time  `json:"hostedDate"`
 	Teams       []Team     `json:"team"`
 	Questions   []Question `json:"questions"`
 }
