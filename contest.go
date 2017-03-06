@@ -4,10 +4,14 @@ package contest
 type ResultType uint8
 
 const (
-	SUCCESS            ResultType = 0
-	COMPILE_TIME_ERROR ResultType = 1
-	RUNTIME_ERROR      ResultType = 2
-	WRONG_ANSWER       ResultType = 3
+	// Success indicates the result of submission is good to go!
+	Success ResultType = 0
+	// CompileTimeError indicates the result of compilation error
+	CompileTimeError ResultType = 1
+	// RuntimeError indicates the runtime error while running submission
+	RuntimeError ResultType = 2
+	// WrongAnswer indicates the program runs but not getting correct answer
+	WrongAnswer ResultType = 3
 )
 
 // User represent contest participants, judge, admins
