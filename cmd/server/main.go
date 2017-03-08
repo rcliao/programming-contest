@@ -8,11 +8,8 @@ import (
 
 	"github.com/gorilla/mux"
 	contest "github.com/rcliao/programming-contest"
+	"github.com/rcliao/programming-contest/web"
 )
-
-func helloHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello contest!")
-}
 
 func helloRouterHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
@@ -33,7 +30,7 @@ func main() {
 	// set up router
 	r := mux.NewRouter()
 	r.HandleFunc("/", indexHandler).Methods("GET")
-	r.HandleFunc("/api/hello", helloHandler).Methods("GET")
+	r.HandleFunc("/api/hello", web.Hello()).Methods("GET")
 	r.HandleFunc("/api/hello/{name}", helloRouterHandler).Methods("GET")
 
 	// start up web application
