@@ -68,3 +68,10 @@ type Contest struct {
 	Teams       []Team     `json:"team"`
 	Questions   []Question `json:"questions"`
 }
+
+type Client interface {
+	ContestService() ContestService
+}
+
+type ContestService interface {
+}
